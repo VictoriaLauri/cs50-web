@@ -1,0 +1,41 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'flights_schedule/styles.css' %}">
+  <title>Flights</title>
+</head>
+<body>
+  <h1>Flights</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Flight ID</th>
+        <th>Departure</th>
+        <th>Arrival</th>
+        <th>Duration</th>
+        <th>Info</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for flight in flights %}
+          <tr>
+            <td>{{ flight.id }}</td>
+            <td>{{ flight.origin }}</td>
+            <td>{{ flight.destination }}</td>
+            <td>{{ flight.duration }} mins</td>
+            <td>
+              <button>
+                <a href="{% url 'flight' flight.id %}">View</a>
+              </button>
+            </td>
+          </tr>
+        </a>
+      {% endfor %}
+    </tbody>
+  </table>
+</body>
+</html>

@@ -1,0 +1,51 @@
+body {
+    font-family: Arial;
+    text-align: center;
+}
+
+.centerScreen {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 100vh;
+}
+
+#problem {
+    font-size: 50px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+input {
+    font-size: 24px;
+    width: 80px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#coins {
+    font-size: 24px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.incorrect {
+    color: rgb(203, 7, 7);
+}
+
+#winner {
+    color: rgb(1, 116, 1);
+    font-size: 50px;
+    font-weight: 700;
+}
+
+.invisible {
+    display: none;
+}
+
+.visible {
+    display: block;
+}

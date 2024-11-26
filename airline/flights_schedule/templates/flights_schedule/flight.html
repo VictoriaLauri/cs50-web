@@ -1,0 +1,68 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'flights_schedule/styles.css' %}">
+  <title>Flight Information</title>
+</head>
+<body>
+  <h2>Flight Information:</h2>
+    <p>
+      <strong>Flight ID:</strong> 00{{ flight.id }}<br>
+      <strong>Departing from:</strong> {{ flight.origin }}<br>
+      <strong>Arriving at:</strong> {{ flight.destination }}<br>
+      <strong>Duration:</strong> {{ flight.duration }} minutes
+    </p>
+  <h2>Passengers:</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Remove Passenger</th>
+      </tr>
+    </thead>
+    <tbody
+    {% for passenger in passengers %}
+      <tr>
+        <td>{{ passenger.id }}</td>
+        <td>{{ passenger.first }}</td>
+        <td>{{ passenger.last }}</td>
+        <td>
+          <form action="{% url 'remove' flight.id %}" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="passenger" value="{{ passenger.id }}">
+            <input type="submit" value="Remove">
+          </form>
+        </td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  <div>
+    <br>
+    <br>
+    <h3>Add Passenger to this flight:</h3>
+    <form action="{% url 'book' flight.id %}" method="post"> 
+      {% csrf_token %}
+      <select name="passenger">
+          <option value="" selected disabled hidden>Choose a Passenger</option>
+        {% for passenger in non_passengers %}
+          <option value="{{ passenger.id }}">{{ passenger }}</option>
+        {% endfor %}
+      </select>
+      <input type="submit" value="Add">
+    </form>
+  </div>
+  <div>
+    <br>
+    <button> 
+      <a href="{% url 'index' %}">Back to All Flights</a>
+    </button>
+  </div>    
+</body>
+</html>
